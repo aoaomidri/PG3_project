@@ -25,6 +25,6 @@ int main(void) {
 	std::wcout << Min(a, b) << std::endl;
 	std::wcout << Min(fa, fb) << std::endl;
 	std::wcout << Min(da, db) << std::endl;
-	std::wcout << Min(ca, cb) << std::endl;
+	Min(ca, cb);
 	return 0;
 }
