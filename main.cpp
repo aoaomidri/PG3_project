@@ -27,6 +27,10 @@ double Min(double a, double b) {
 	}
 }
 
+char Min(char a, char b) {
+	return 
+}
+
 int main() {
 
 	return 0;
