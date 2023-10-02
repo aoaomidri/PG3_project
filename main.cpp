@@ -22,9 +22,9 @@ int main(void) {
 	double da = 973, db = 918;
 	char ca = 'g', cb = 'n';
 
-	std::cout << Min(a, b) << std::endl;
-	std::cout << Min(fa, fb) << std::endl;
-	std::cout << Min(da, db) << std::endl;
-	std::cout << Min(ca, cb) << std::endl;
+	std::wcout << Min(a, b) << std::endl;
+	std::wcout << Min(fa, fb) << std::endl;
+	std::wcout << Min(da, db) << std::endl;
+	std::wcout << Min(ca, cb) << std::endl;
 	return 0;
 }
