@@ -1,32 +1,48 @@
 ﻿#include<iostream>
-int SalaryComparison(int n,int count,int num) {
-	int BaseSalary = 1072;
-	int BaseNum = 0;
+#include<random>
+#include<Windows.h>
+typedef void (*pFunc)(int, int, int);
 
-	BaseNum = BaseSalary * count;
+void Judgment(int SleepTime,int RandNumber,int SelectNumber) {
+	std::cout << "さぁ、どうでしょうか・・・" << std::endl;
+	Sleep(SleepTime);
+	std::cout << "賽の目は " << RandNumber << " です。" << std::endl;
 
-	printf("%d時間経過 : 一般 %d : 再帰 %d\n", count, BaseNum, num);
-
-	if (BaseNum < num){
-		return count;
+	if (RandNumber % 2 == SelectNumber) {
+		std::cout << "あなたの、勝ちです。" << std::endl;
 	}
 	else {
-		num += n * 2 - 50;
-
-		return SalaryComparison(n * 2 - 50, count + 1, num);
+		std::cout << "あなたの負けです。" << std::endl;
 	}
-	
+}
+
+void DiceChallenge(pFunc p, int SleepTime, int RandNumber, int SelectNumber) {
+	std::cout << "賽が奇数と予想するなら「1」、偶数と予想するなら「0」を入力してください。" << std::endl;
+	std::cin >> SelectNumber;
+
+	while (SelectNumber >= 2 || SelectNumber < 0) {
+		std::cout << "賽が奇数と予想するなら「1」、偶数と予想するなら「0」を入力してください。" << std::endl;
+		std::cin >> SelectNumber;
+	}
+
+	if (SelectNumber == 0) {
+		p(SleepTime, RandNumber, SelectNumber);
+	}
+	else if (SelectNumber == 1) {
+		p(SleepTime, RandNumber, SelectNumber);
+	}
 }
 
 int main(void) {
-	int firstSalary = 100;
-	int count = 1;
-	int num = 100;
-	int result = 0;
-
-	result = SalaryComparison(firstSalary, count, num);
-
-	printf("\n%d時間以上働く場合、再帰的な賃金体系の方が儲かる", result);
+	std::random_device seed_gen;
+	std::mt19937 engine(seed_gen());
+	int randNumber = engine() % 6 + 1;
+	int PLSelectNumber = 0;
+	int sleepTime = 3 * 1000;
+	pFunc p;
+	p = Judgment;
+	DiceChallenge(p, sleepTime, randNumber, PLSelectNumber);
+	
 
 	return 0;
 }
