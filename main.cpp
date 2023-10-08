@@ -3,7 +3,7 @@
 #include<Windows.h>
 typedef void (*pFunc)(int, int, int);
 
-void Judgment(int SleepTime,int RandNumber,int SelectNumber) {
+void Judgement(int SleepTime,int RandNumber,int SelectNumber) {
 	std::cout << "さぁ、どうでしょうか・・・" << std::endl;
 	Sleep(SleepTime);
 	std::cout << "賽の目は " << RandNumber << " です。" << std::endl;
@@ -40,7 +40,7 @@ int main(void) {
 	int PLSelectNumber = 0;
 	int sleepTime = 3 * 1000;
 	pFunc p;
-	p = Judgment;
+	p = Judgement;
 	DiceChallenge(p, sleepTime, randNumber, PLSelectNumber);
 	
 
