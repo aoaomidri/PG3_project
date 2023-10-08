@@ -5,6 +5,8 @@ int SalaryComparison(int n,int count,int num) {
 
 	BaseNum = BaseSalary * count;
 
+	printf("%d時間経過 : 一般 %d : 再帰 %d\n", count, BaseNum, num);
+
 	if (BaseNum < num){
 		return count;
 	}
@@ -24,7 +26,7 @@ int main(void) {
 
 	result = SalaryComparison(firstSalary, count, num);
 
-	printf("%d", result);
+	printf("\n%d時間以上働く場合、再帰的な賃金体系の方が儲かる", result);
 
 	return 0;
 }
