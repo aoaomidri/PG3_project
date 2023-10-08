@@ -1,9 +1,8 @@
 ﻿#include<iostream>
 #include<random>
 #include<Windows.h>
-typedef void (*pFunc)(int, int, int);
-
-void Judgement(int SleepTime,int RandNumber,int SelectNumber) {
+#include<functional>
+void Judgement(int SleepTime, int RandNumber, int SelectNumber) {
 	std::cout << "さぁ、どうでしょうか・・・" << std::endl;
 	Sleep(SleepTime);
 	std::cout << "賽の目は " << RandNumber << " です。" << std::endl;
@@ -16,7 +15,9 @@ void Judgement(int SleepTime,int RandNumber,int SelectNumber) {
 	}
 }
 
-void DiceChallenge(pFunc p, int SleepTime, int RandNumber, int SelectNumber) {
+void DiceChallenge(int SleepTime, int RandNumber, int SelectNumber) {
+	std::function<void(int, int, int)> Judge = Judgement;
+
 	std::cout << "賽が奇数と予想するなら「1」、偶数と予想するなら「0」を入力してください。" << std::endl;
 	std::cin >> SelectNumber;
 
@@ -26,23 +27,24 @@ void DiceChallenge(pFunc p, int SleepTime, int RandNumber, int SelectNumber) {
 	}
 
 	if (SelectNumber == 0) {
-		p(SleepTime, RandNumber, SelectNumber);
+		Judge(SleepTime, RandNumber, SelectNumber);
 	}
 	else if (SelectNumber == 1) {
-		p(SleepTime, RandNumber, SelectNumber);
+		Judge(SleepTime, RandNumber, SelectNumber);
 	}
 }
 
 int main(void) {
 	std::random_device seed_gen;
 	std::mt19937 engine(seed_gen());
-	int randNumber = engine() % 6 + 1;
+	auto random = [](std::mt19937 en) {return en() % 6 + 1; };
+
+	int randNumber = random(engine);
 	int PLSelectNumber = 0;
 	int sleepTime = 3 * 1000;
-	pFunc p;
-	p = Judgement;
-	DiceChallenge(p, sleepTime, randNumber, PLSelectNumber);
-	
+
+	DiceChallenge(sleepTime, randNumber, PLSelectNumber);
+
 
 	return 0;
 }
