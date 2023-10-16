@@ -1,4 +1,6 @@
 #pragma once
+#include<iostream>
+#include<Windows.h>
 class Enemy{
 public:
 	void Initialize();
@@ -12,9 +14,27 @@ public:
 	void Shot();
 	//離脱
 	void Leave();
+	//戦闘終了
+	void End();
+
+private:
+	//std::cout省略関数
+	void makeComment(const char* message);
 
 private:
 	static void(Enemy::* enFuncTable[])();
 
+	enum class Phase{
+		Attack,
+		Shot,
+		Leave,
+		End,
+	};
+
+	//フェーズ
+	Phase phase_;
+
+	//スリープの時間
+	int sleepTime;
 };
 
