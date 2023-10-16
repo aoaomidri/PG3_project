@@ -1,50 +1,27 @@
-﻿#include<iostream>
-#include<random>
-#include<Windows.h>
-#include<functional>
-void Judgement(int SleepTime, int RandNumber, int SelectNumber) {
-	std::cout << "さぁ、どうでしょうか・・・" << std::endl;
-	Sleep(SleepTime);
-	std::cout << "賽の目は " << RandNumber << " です。" << std::endl;
-
-	if (RandNumber % 2 == SelectNumber) {
-		std::cout << "あなたの、勝ちです。" << std::endl;
-	}
-	else {
-		std::cout << "あなたの負けです。" << std::endl;
-	}
+﻿#include"math.h"
+template<typename T>
+void makeComment(T message) {
+	std::cout << message << std::endl;
 }
-
-void DiceChallenge(int SleepTime, int RandNumber, int SelectNumber) {
-	std::function<void(int, int, int)> Judge = Judgement;
-
-	std::cout << "賽が奇数と予想するなら「1」、偶数と予想するなら「0」を入力してください。" << std::endl;
-	std::cin >> SelectNumber;
-
-	while (SelectNumber >= 2 || SelectNumber < 0) {
-		std::cout << "賽が奇数と予想するなら「1」、偶数と予想するなら「0」を入力してください。" << std::endl;
-		std::cin >> SelectNumber;
-	}
-
-	if (SelectNumber == 0) {
-		Judge(SleepTime, RandNumber, SelectNumber);
-	}
-	else if (SelectNumber == 1) {
-		Judge(SleepTime, RandNumber, SelectNumber);
-	}
-}
-
 int main(void) {
-	std::random_device seed_gen;
-	std::mt19937 engine(seed_gen());
-	auto random = [](std::mt19937 en) {return en() % 6 + 1; };
+	int numI = 17;
+	float numF = 15.2f;
+	double numD = 9.2;
 
-	int randNumber = random(engine);
-	int PLSelectNumber = 0;
-	int sleepTime = 3 * 1000;
+	math<int, double>   pair1(numI, numD);
+	math<int, float>    pair2(numI, numF);
+	math<float, int>    pair3(numF, numI);
+	math<float, double> pair4(numF, numD);
+	math<double,int>	pair5(numD, numI);
+	math<double, float> pair6(numD, numF);
 
-	DiceChallenge(sleepTime, randNumber, PLSelectNumber);
-
+	makeComment(pair1.Min());
+	makeComment(pair2.Min());
+	makeComment(pair3.Min());
+	makeComment(pair4.Min());
+	makeComment(pair5.Min());
+	makeComment(pair6.Min());
 
 	return 0;
 }
+
