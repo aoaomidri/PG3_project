@@ -14,8 +14,6 @@ public:
 	void Shot();
 	//—£’E
 	void Leave();
-	//í“¬I—¹
-	void End();
 
 private:
 	//std::coutÈ—ªŠÖ”

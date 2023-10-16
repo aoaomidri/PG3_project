@@ -37,10 +37,6 @@ void Enemy::Leave() {
 	phase_ = Phase::End;
 }
 
-void Enemy::End(){
-	
-}
-
 void Enemy::makeComment(const char* message){
 	std::cout << message << std::endl;
 }

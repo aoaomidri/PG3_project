@@ -1,7 +1,7 @@
 ﻿#include"Enemy.h"
 
 int main(void) {
-	Enemy enemy;
+	Enemy enemy{};
 
 	enemy.Initialize();
 
