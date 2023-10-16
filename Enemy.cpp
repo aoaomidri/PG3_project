@@ -15,28 +15,30 @@ void Enemy::Update() {
 	while (phase_ != Phase::End) {
 		(this->*enFuncTable[static_cast<size_t>(phase_)])();
 	}
+
+	makeComment("í“¬I—¹!");
 }
 
 void Enemy::Attack() {
-	makeComment("“G‚Í‰s‚¢’Ü‚ÅUŒ‚‚µ‚Ä‚«‚½!");
+	makeComment("“G‚Í‰s‚¢’Ü‚ÅUŒ‚‚µ‚Ä‚«‚½!\n");
 	Sleep(sleepTime);
 	phase_ = Phase::Shot;
 }
 
 void Enemy::Shot() {
-	makeComment("“G‚Í–Ø‚ğ“ã‚¬•¥‚Á‚Ä”j•Ğ‚ğ”ò‚Î‚µ‚Ä‚«‚½!");
+	makeComment("“G‚Í–Ø‚ğ“ã‚¬•¥‚Á‚Ä”j•Ğ‚ğ”ò‚Î‚µ‚Ä‚«‚½!\n");
 	Sleep(sleepTime);
 	phase_ = Phase::Leave;
 }
 
 void Enemy::Leave() {
-	makeComment("“G‚Í‹‚Á‚Ä‚¢‚Á‚½EEE");
+	makeComment("“G‚Í‹‚Á‚Ä‚¢‚Á‚½EEE\n");
 	Sleep(sleepTime);
 	phase_ = Phase::End;
 }
 
 void Enemy::End(){
-	makeComment("í“¬I—¹!");
+	
 }
 
 void Enemy::makeComment(const char* message){
