@@ -1,32 +1,19 @@
-﻿#include<iostream>
-int SalaryComparison(int n,int count,int num) {
-	int BaseSalary = 1072;
-	int BaseNum = 0;
-
-	BaseNum = BaseSalary * count;
-
-	printf("%d時間経過 : 一般 %d : 再帰 %d\n", count, BaseNum, num);
-
-	if (BaseNum < num){
-		return count;
-	}
-	else {
-		num += n * 2 - 50;
-
-		return SalaryComparison(n * 2 - 50, count + 1, num);
-	}
-	
-}
-
+﻿#include"Circle.h"
+#include"Rectangle.h"
 int main(void) {
-	int firstSalary = 100;
-	int count = 1;
-	int num = 100;
-	int result = 0;
+	IShape* ishape_[2]{};
+	Vector2 size_ = { 2.0f,3.0f };
 
-	result = SalaryComparison(firstSalary, count, num);
+	ishape_[0] = new Circle;
+	ishape_[1] = new Rectangle;
 
-	printf("\n%d時間以上働く場合、再帰的な賃金体系の方が儲かる", result);
+	for (int i = 0; i < 2; i++){
+		ishape_[i]->size(size_);
+	}
+
+	for (int i = 0; i < 2; i++){
+		ishape_[i]->draw();
+	}
 
 	return 0;
 }
