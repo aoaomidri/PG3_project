@@ -127,10 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Club.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Pistol.cpp" />
+    <ClCompile Include="Sword.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="math.h" />
+    <ClInclude Include="Club.h" />
+    <ClInclude Include="Pistol.h" />
+    <ClInclude Include="Sword.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,26 +1,23 @@
-﻿#include"math.h"
-template<typename T>
-void makeComment(T message) {
-	std::cout << message << std::endl;
-}
+﻿#include"Weapon.h"
+#include"Sword.h"
+#include"Pistol.h"
+#include"Club.h"
+
 int main(void) {
-	int numI = 17;
-	float numF = 15.2f;
-	double numD = 9.2;
+	const int weaponNum = 3;
 
-	math<int, double>   pair1(numI, numD);
-	math<int, float>    pair2(numI, numF);
-	math<float, int>    pair3(numF, numI);
-	math<float, double> pair4(numF, numD);
-	math<double,int>	pair5(numD, numI);
-	math<double, float> pair6(numD, numF);
+	Weapon* weapon_[weaponNum]{};
 
-	makeComment(pair1.Min());
-	makeComment(pair2.Min());
-	makeComment(pair3.Min());
-	makeComment(pair4.Min());
-	makeComment(pair5.Min());
-	makeComment(pair6.Min());
+	weapon_[0] = new Sword;
+	weapon_[1] = new Pistol;
+	weapon_[2] = new Club;
+
+	for (int i = 0; i < weaponNum; i++){
+		weapon_[i]->ViewStatus();
+	}
+	for (int i = 0; i < weaponNum; i++){
+		delete weapon_[i];
+	}
 
 	return 0;
 }
