@@ -9,8 +9,7 @@ void setTimeout(pFunc p, int SleepTime, int RandNumber, int SelectNumber) {
 	p(SleepTime, RandNumber, SelectNumber);
 }
 
-void Judgement(int SleepTime,int RandNumber,int SelectNumber) {
-	
+void Judgement(int SleepTime,int RandNumber,int SelectNumber) {	
 	std::cout << "賽の目は " << RandNumber << " です。" << std::endl;
 
 	if (RandNumber % 2 == SelectNumber) {
