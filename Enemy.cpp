@@ -1,4 +1,4 @@
-#include "Enemy.h"
+ï»¿#include "Enemy.h"
 void (Enemy::* Enemy::enFuncTable[])() = {
 	&Enemy::Attack,
 	&Enemy::Shot,
@@ -16,23 +16,23 @@ void Enemy::Update() {
 		(this->*enFuncTable[static_cast<size_t>(phase_)])();
 	}
 
-	makeComment("í“¬I—¹!");
+	makeComment("æˆ¦é—˜çµ‚äº†!");
 }
 
 void Enemy::Attack() {
-	makeComment("“G‚Í‰s‚¢’Ü‚ÅUŒ‚‚µ‚Ä‚«‚½!\n");
+	makeComment("æ•µã¯é‹­ã„çˆªã§æ”»æ’ƒã—ã¦ããŸ!\n");
 	Sleep(sleepTime);
 	phase_ = Phase::Shot;
 }
 
 void Enemy::Shot() {
-	makeComment("“G‚Í–Ø‚ğ“ã‚¬•¥‚Á‚Ä”j•Ğ‚ğ”ò‚Î‚µ‚Ä‚«‚½!\n");
+	makeComment("æ•µã¯æœ¨ã‚’è–™ãæ‰•ã£ã¦ç ´ç‰‡ã‚’é£›ã°ã—ã¦ããŸ!\n");
 	Sleep(sleepTime);
 	phase_ = Phase::Leave;
 }
 
 void Enemy::Leave() {
-	makeComment("“G‚Í‹‚Á‚Ä‚¢‚Á‚½EEE\n");
+	makeComment("æ•µã¯å»ã£ã¦ã„ã£ãŸãƒ»ãƒ»ãƒ»\n");
 	Sleep(sleepTime);
 	phase_ = Phase::End;
 }

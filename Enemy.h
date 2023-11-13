@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include<iostream>
 #include<Windows.h>
 class Enemy{
@@ -8,15 +8,15 @@ public:
 	void Update();
 
 public:
-	//‹ßÚUŒ‚
+	//è¿‘æ¥æ”»æ’ƒ
 	void Attack();
-	//ËŒ‚UŒ‚
+	//å°„æ’ƒæ”»æ’ƒ
 	void Shot();
-	//—£’E
+	//é›¢è„±
 	void Leave();
 
 private:
-	//std::coutÈ—ªŠÖ”
+	//std::coutçœç•¥é–¢æ•°
 	void makeComment(const char* message);
 
 private:
@@ -29,10 +29,10 @@ private:
 		End,
 	};
 
-	//ƒtƒF[ƒY
+	//ãƒ•ã‚§ãƒ¼ã‚º
 	Phase phase_;
 
-	//ƒXƒŠ[ƒv‚ÌŠÔ
+	//ã‚¹ãƒªãƒ¼ãƒ—ã®æ™‚é–“
 	int sleepTime;
 };
 
