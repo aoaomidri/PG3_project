@@ -1,7 +1,7 @@
 ﻿#include "Weapon.h"
 
 Weapon::Weapon(){
-	name = "\0";
+	name_ = "\0";
 }
 
 Weapon::~Weapon(){
@@ -9,5 +9,6 @@ Weapon::~Weapon(){
 }
 
 void Weapon::ViewStatus(){
-	
+
+	std::cout << "\0" << std::endl;
 }

@@ -2,7 +2,7 @@
 #include"Weapon.h"
 class Sword: public Weapon{
 public:
-	Sword();
+	Sword(const char* name);
 	~Sword();
 
 	void ViewStatus()override;

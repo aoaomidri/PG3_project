@@ -6,6 +6,6 @@ public:
 	virtual ~Weapon();
 	virtual void ViewStatus();
 protected:
-	const char* name;
+	const char* name_;
 };
 
