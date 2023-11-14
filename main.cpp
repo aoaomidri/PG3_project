@@ -2,9 +2,15 @@
 #include<random>
 #include<Windows.h>
 #include<functional>
-void Judgement(int SleepTime, int RandNumber, int SelectNumber) {
+typedef void (*pFunc)(int, int, int);
+
+std::function<void(void)>setTimeout(pFunc p, int SleepTime, int RandNumber, int SelectNumber) {
 	std::cout << "さぁ、どうでしょうか・・・" << std::endl;
 	Sleep(SleepTime);
+	p(SleepTime, RandNumber, SelectNumber);
+}
+
+void Judgement(int SleepTime, int RandNumber, int SelectNumber) {
 	std::cout << "賽の目は " << RandNumber << " です。" << std::endl;
 
 	if (RandNumber % 2 == SelectNumber) {
@@ -16,7 +22,6 @@ void Judgement(int SleepTime, int RandNumber, int SelectNumber) {
 }
 
 void DiceChallenge(int SleepTime, int RandNumber, int SelectNumber) {
-	std::function<void(int, int, int)> Judge = Judgement;
 
 	std::cout << "賽が奇数と予想するなら「1」、偶数と予想するなら「0」を入力してください。" << std::endl;
 	std::cin >> SelectNumber;
@@ -27,10 +32,10 @@ void DiceChallenge(int SleepTime, int RandNumber, int SelectNumber) {
 	}
 
 	if (SelectNumber == 0) {
-		Judge(SleepTime, RandNumber, SelectNumber);
+		setTimeout(Judgement, SleepTime, RandNumber, SelectNumber);
 	}
 	else if (SelectNumber == 1) {
-		Judge(SleepTime, RandNumber, SelectNumber);
+		setTimeout(Judgement, SleepTime, RandNumber, SelectNumber);
 	}
 }
 
