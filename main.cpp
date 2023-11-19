@@ -2,15 +2,15 @@
 #include<random>
 #include<Windows.h>
 #include<functional>
-typedef void (*pFunc)(int, int, int);
 
-std::function<void(void)>setTimeout(pFunc p, int SleepTime, int RandNumber, int SelectNumber) {
-	std::cout << "さぁ、どうでしょうか・・・" << std::endl;
-	Sleep(SleepTime);
-	p(SleepTime, RandNumber, SelectNumber);
-}
+// std::function型のエイリアスを作成
+using stdFunc = std::function<void(int, int, int)>;
 
-void Judgement(int SleepTime, int RandNumber, int SelectNumber) {
+using inputFunc = std::function<int()>;
+
+
+// 関数の宣言
+void Judgement(int RandNumber, int SelectNumber) {
 	std::cout << "賽の目は " << RandNumber << " です。" << std::endl;
 
 	if (RandNumber % 2 == SelectNumber) {
@@ -21,22 +21,42 @@ void Judgement(int SleepTime, int RandNumber, int SelectNumber) {
 	}
 }
 
-void DiceChallenge(int SleepTime, int RandNumber, int SelectNumber) {
+std::function<void(int, int, int)> setTimeout(int SleepTime, int RandNumber, int SelectNumber) {
+	std::cout << "さぁ、どうでしょうか・・・" << std::endl;
+	Sleep(SleepTime);
 
-	std::cout << "賽が奇数と予想するなら「1」、偶数と予想するなら「0」を入力してください。" << std::endl;
-	std::cin >> SelectNumber;
+	return[RandNumber, SelectNumber](int, int, int) {
+		Judgement(RandNumber, SelectNumber);
+	};
+}
+
+std::function<int()> inputOperation() {
+	int value = 0;
+	return[&value]() {		
+		std::cout << "賽が奇数と予想するなら「1」、偶数と予想するなら「0」を入力してください。" << std::endl;
+		std::cin >> value;
+		return value;
+	};
+}
+
+void DiceChallenge(int SleepTime, int RandNumber, int SelectNumber) {
+	stdFunc delayedFunction;
+	inputFunc getInputFunction = inputOperation();
+
+	SelectNumber = getInputFunction();
 
 	while (SelectNumber >= 2 || SelectNumber < 0) {
-		std::cout << "賽が奇数と予想するなら「1」、偶数と予想するなら「0」を入力してください。" << std::endl;
-		std::cin >> SelectNumber;
+		SelectNumber = getInputFunction();
 	}
 
 	if (SelectNumber == 0) {
-		setTimeout(Judgement, SleepTime, RandNumber, SelectNumber);
+		delayedFunction = setTimeout(SleepTime, RandNumber, SelectNumber);
 	}
 	else if (SelectNumber == 1) {
-		setTimeout(Judgement, SleepTime, RandNumber, SelectNumber);
+		delayedFunction = setTimeout(SleepTime, RandNumber, SelectNumber);		
 	}
+
+	delayedFunction(0, 0, 0);
 }
 
 int main(void) {
