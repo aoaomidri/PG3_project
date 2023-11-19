@@ -2,7 +2,7 @@
 #include"Weapon.h"
 class Club : public Weapon{
 public:
-	Club(const char* name);
+	Club();
 	~Club();
 
 	void ViewStatus()override;

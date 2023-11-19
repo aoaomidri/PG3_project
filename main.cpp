@@ -8,9 +8,9 @@ int main(void) {
 
 	Weapon* weapon_[weaponNum]{};
 
-	weapon_[0] = new Sword("錆びた剣");
-	weapon_[1] = new Pistol("拳銃");
-	weapon_[2] = new Club("こん棒");
+	weapon_[0] = new Sword();
+	weapon_[1] = new Pistol();
+	weapon_[2] = new Club();
 
 	for (int i = 0; i < weaponNum; i++){
 		weapon_[i]->ViewStatus();

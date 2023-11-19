@@ -1,7 +1,7 @@
 ﻿#include "Club.h"
 
-Club::Club(const char* name){
-	name_ = name;
+Club::Club(){
+	name_ = "こん棒";
 }
 
 Club::~Club(){

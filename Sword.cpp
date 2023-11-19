@@ -1,7 +1,7 @@
 ﻿#include "Sword.h"
 
-Sword::Sword(const char* name){
-	name_ = name;
+Sword::Sword(){
+	name_ = "錆びた剣";
 }
 
 Sword::~Sword(){

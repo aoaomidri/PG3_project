@@ -1,7 +1,7 @@
 ﻿#include "Pistol.h"
 
-Pistol::Pistol(const char* name){
-	name_ = name;
+Pistol::Pistol(){
+	name_ = "拳銃";
 }
 
 Pistol::~Pistol(){
