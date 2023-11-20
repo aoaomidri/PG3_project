@@ -4,10 +4,8 @@
 #include<functional>
 
 // std::function型のエイリアスを作成
-using stdFunc = std::function<void(int, int, int)>;
-
 using inputFunc = std::function<int()>;
-
+typedef void (*pFunc)(int, int);
 
 // 関数の宣言
 void Judgement(int RandNumber, int SelectNumber) {
@@ -21,13 +19,10 @@ void Judgement(int RandNumber, int SelectNumber) {
 	}
 }
 
-std::function<void(int, int, int)> setTimeout(int SleepTime, int RandNumber, int SelectNumber) {
+void setTimeout(pFunc p, int SleepTime, int RandNumber, int SelectNumber) {
 	std::cout << "さぁ、どうでしょうか・・・" << std::endl;
 	Sleep(SleepTime);
-
-	return[RandNumber, SelectNumber](int, int, int) {
-		Judgement(RandNumber, SelectNumber);
-	};
+	p(RandNumber, SelectNumber);
 }
 
 std::function<int()> inputOperation() {
@@ -39,8 +34,7 @@ std::function<int()> inputOperation() {
 	};
 }
 
-void DiceChallenge(int SleepTime, int RandNumber, int SelectNumber) {
-	stdFunc delayedFunction;
+void DiceChallenge(pFunc p, int SleepTime, int RandNumber, int SelectNumber) {
 	inputFunc getInputFunction = inputOperation();
 
 	SelectNumber = getInputFunction();
@@ -50,13 +44,12 @@ void DiceChallenge(int SleepTime, int RandNumber, int SelectNumber) {
 	}
 
 	if (SelectNumber == 0) {
-		delayedFunction = setTimeout(SleepTime, RandNumber, SelectNumber);
+		setTimeout(p, SleepTime, RandNumber, SelectNumber);
 	}
 	else if (SelectNumber == 1) {
-		delayedFunction = setTimeout(SleepTime, RandNumber, SelectNumber);		
+		setTimeout(p, SleepTime, RandNumber, SelectNumber);
 	}
 
-	delayedFunction(0, 0, 0);
 }
 
 int main(void) {
@@ -68,7 +61,9 @@ int main(void) {
 	int PLSelectNumber = 0;
 	int sleepTime = 3 * 1000;
 
-	DiceChallenge(sleepTime, randNumber, PLSelectNumber);
+	pFunc p;
+	p = Judgement;
+	DiceChallenge(p, sleepTime, randNumber, PLSelectNumber);
 
 
 	return 0;
