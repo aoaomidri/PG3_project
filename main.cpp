@@ -5,7 +5,6 @@
 
 // std::function型のエイリアスを作成
 using inputFunc = std::function<int()>;
-typedef void (*pFunc)(int, int);
 
 // 関数の宣言
 void Judgement(int RandNumber, int SelectNumber) {
@@ -19,10 +18,10 @@ void Judgement(int RandNumber, int SelectNumber) {
 	}
 }
 
-void setTimeout(pFunc p, int SleepTime, int RandNumber, int SelectNumber) {
+void setTimeout(std::function<void()> p, int SleepTime) {
 	std::cout << "さぁ、どうでしょうか・・・" << std::endl;
 	Sleep(SleepTime);
-	p(RandNumber, SelectNumber);
+	p();
 }
 
 std::function<int()> inputOperation() {
@@ -34,24 +33,6 @@ std::function<int()> inputOperation() {
 	};
 }
 
-void DiceChallenge(pFunc p, int SleepTime, int RandNumber, int SelectNumber) {
-	inputFunc getInputFunction = inputOperation();
-
-	SelectNumber = getInputFunction();
-
-	while (SelectNumber >= 2 || SelectNumber < 0) {
-		SelectNumber = getInputFunction();
-	}
-
-	if (SelectNumber == 0) {
-		setTimeout(p, SleepTime, RandNumber, SelectNumber);
-	}
-	else if (SelectNumber == 1) {
-		setTimeout(p, SleepTime, RandNumber, SelectNumber);
-	}
-
-}
-
 int main(void) {
 	std::random_device seed_gen;
 	std::mt19937 engine(seed_gen());
@@ -61,10 +42,23 @@ int main(void) {
 	int PLSelectNumber = 0;
 	int sleepTime = 3 * 1000;
 
-	pFunc p;
-	p = Judgement;
-	DiceChallenge(p, sleepTime, randNumber, PLSelectNumber);
+	std::function<void()> p;
+	p = [&randNumber, &PLSelectNumber]() {Judgement(randNumber, PLSelectNumber); };
 
+	inputFunc getInputFunction = inputOperation();
+
+	PLSelectNumber = getInputFunction();
+
+	while (PLSelectNumber >= 2 || PLSelectNumber < 0) {
+		PLSelectNumber = getInputFunction();
+	}
+
+	if (PLSelectNumber == 0) {
+		setTimeout(p, sleepTime);
+	}
+	else if (PLSelectNumber == 1) {
+		setTimeout(p, sleepTime);
+	}
 
 	return 0;
 }
