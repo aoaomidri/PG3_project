@@ -1,30 +1,70 @@
-﻿#include<iostream>
-
-template <typename Type>
-Type Min(Type a, Type b) {
-	if (a > b) {
-		return b;
+#include<stdio.h>
+#include<list>
+#include<iostream>
+void StationNameDraw(const char* year, std::list<const char*> stationName) {
+	std::cout << year << std::endl;
+	for (auto i = stationName.begin(); i != stationName.end(); ++i) {
+		std::cout << *i << std::endl;
 	}
-	else if (b > a) {
-		return a;
-	}
+	std::cout << "\n" << std::endl;
 }
 
-template<>
-char Min<char>(char a, char b) {
-	std::wcout << "数字以外は代入できません" << std::endl;
-	return '\n';
+std::list<const char*> InsertAfter(const char* stationName1, const char* stationName2, std::list<const char*> stationNameList) {
+	for (auto i = stationNameList.begin(); i != stationNameList.end(); ++i) {
+		if (*i == stationName1) {
+			i = stationNameList.insert(i, stationName2);
+			break;
+		}
+
+	}
+
+	return stationNameList;
 }
 
 int main(void) {
-	int a = 8, b = 4;
-	float fa = 9.4f, fb = 9.39f;
-	double da = 973, db = 918;
-	char ca = 'g', cb = 'n';
+	std::list<const char*> stationNameList{
+		"Tokyo",
+		"Yurakucho",
+		"Shimbashi",
+		"Hamamatsucho",
+		"Tamachi",
+		//"Takanawa Gateway",//6
+		"Shinagawa",
+		"Osaki",
+		"Gotanda",
+		"Meguro",
+		"Ebisu",
+		"Shibuya",
+		"Harajuku",
+		"Yoyogi",
+		"Shinjuku",
+		"Shin-Okubo",
+		"Takadanobaba",
+		"Mejiro",
+		"Ikebukuro",
+		"Otsuka",
+		"Sugamo",
+		"Komagome",
+		"Tabata",
+		//"Nishi-Nippori",//22
+		"Nippori",
+		"Uguisudani",
+		"Ueno",
+		"Okachimachi",
+		"Akihabara",
+		"Kanda"
+	};
 
-	std::wcout << Min(a, b) << std::endl;
-	std::wcout << Min(fa, fb) << std::endl;
-	std::wcout << Min(da, db) << std::endl;
-	Min(ca, cb);
+	StationNameDraw("1970", stationNameList);
+	
+	stationNameList = InsertAfter("Nippori", "Nishi-Nippori", stationNameList);
+	
+	StationNameDraw("2019", stationNameList);
+	
+	stationNameList = InsertAfter("Shinagawa", "Takanawa Gateway", stationNameList);
+	
+	StationNameDraw("2022", stationNameList);
+
+
 	return 0;
 }
