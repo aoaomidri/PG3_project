@@ -1,26 +1,22 @@
 ﻿#include<iostream>
-#include<vector>
+#define _USE_MATH_DEFINES
+#include<math.h>
+#include<string>
 
+int main() {
+    std::string filePath = "resources/uvChecker.png";
 
-int main(void) {
-	int x = 0;
-	int y = 0;
-	
-	
-	while (true) {
-		
-		std::cin >> x >> y;
-		if (x == 0 && y == 0){
-			break;
-		}
+    size_t slashPos = filePath.find_last_of('/');
+    size_t dotPos = filePath.find_last_of('.');
 
-		if (x > y) {
-			std::cout << y << " " << x << std::endl;
-		}
-		else {
-			std::cout << x << " " << y << std::endl;
-		}
-	}
+    if (slashPos != std::string::npos && dotPos != std::string::npos && dotPos > slashPos) {
+        std::string result = filePath.substr(slashPos + 1, dotPos - slashPos - 1);
+        std::cout << result << std::endl;
+    }
+    else {
+        std::cout << "Substring not found." << std::endl;
+    }
 
-	return 0;
+    return 0;
+
 }
