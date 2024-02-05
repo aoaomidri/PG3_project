@@ -8,15 +8,15 @@ public:
 	void Update();
 
 public:
-	//近接攻撃
+	//
 	void Attack();
-	//射撃攻撃
+	//
 	void Shot();
-	//離脱
+	//
 	void Leave();
 
 private:
-	//std::cout省略関数
+	//std::cout
 	void makeComment(const char* message);
 
 private:
@@ -29,10 +29,10 @@ private:
 		End,
 	};
 
-	//フェーズ
+	//
 	Phase phase_;
 
-	//スリープの時間
+	//
 	int sleepTime;
 };
 

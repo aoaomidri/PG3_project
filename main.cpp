@@ -1,4 +1,4 @@
-﻿#include"Enemy.h"
+#include"Enemy.h"
 
 int main(void) {
 	Enemy enemy{};
