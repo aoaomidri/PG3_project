@@ -1,26 +1,27 @@
 ﻿#include<iostream>
-#include<vector>
 #include<string>
+#include<cctype>
 
 int main() {
-    std::vector<std::string> data;
-    std::string x ;
+    int data[26]{};
+    std::string line;
 
-    while (true) {
-        std::cin >> x;
-        if (x == "0") break;
-        data.push_back(x);
+    while (std::getline(std::cin, line)){
 
+        if (line.empty()){
+            break;
+        }
+
+        for (char c : line) {
+            if (std::isalpha(c)){
+                data[std::tolower(c) - 'a']++;
+
+            }
+        }
     }
 
-
-    for (size_t i = 0; i < data.size(); i++) {
-        int a = 0;
-        for (size_t j = 0; j < data[i].size(); j++){
-            a += data[i][j] - '0';
-
-        } 
-        std::cout << a << std::endl;
+    for (int i = 0; i < 26; i++){
+        std::cout << static_cast<char>(i + 'a') << " : " << data[i] << std::endl;
     }
 
 
