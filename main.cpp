@@ -1,26 +1,28 @@
-﻿#include <iostream>
-#include <string>
-#include<cctype>
+﻿#include<iostream>
+#include<vector>
+#include<string>
 
 int main() {
-	std::string result;
-	std::string text;
-	std::getline(std::cin, result);
+    std::vector<std::string> data;
+    std::string x ;
 
-	for (size_t i = 0; i < result.size(); i++){
-		char c = result.at(i);
-		if (isupper(c)) {
-			c = tolower(c);
-		}
-		else if (islower(c)) {
-			c = toupper(c);
-		}
-		else {
-			
-		}
+    while (true) {
+        std::cin >> x;
+        if (x == "0") break;
+        data.push_back(x);
 
-		text.push_back(c);
-	}
+    }
 
-	std::cout << text << std::endl;
+
+    for (size_t i = 0; i < data.size(); i++) {
+        int a = 0;
+        for (size_t j = 0; j < data[i].size(); j++){
+            a += data[i][j] - '0';
+
+        } 
+        std::cout << a << std::endl;
+    }
+
+
+    return 0;
 }
